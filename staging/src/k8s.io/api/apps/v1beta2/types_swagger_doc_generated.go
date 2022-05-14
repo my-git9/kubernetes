@@ -236,7 +236,7 @@ func (ReplicaSetList) SwaggerDoc() map[string]string {
 
 var map_ReplicaSetSpec = map[string]string{
 	"":                "ReplicaSetSpec is the specification of a ReplicaSet.",
-	"replicas":        "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller",
+	"replicas":        "Replicas is the number of desired replicas. This is a pointer to distinguish between explicit zero and unspecified. Defaults to 1. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/",
 	"minReadySeconds": "Minimum number of seconds for which a newly created pod should be ready without any of its container crashing, for it to be considered available. Defaults to 0 (pod will be considered available as soon as it is ready)",
 	"selector":        "Selector is a label query over pods that should match the replica count. Label keys and values that must match in order to be controlled by this replica set. It must match the pod template's labels. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors",
 	"template":        "Template is the object that describes the pod that will be created if insufficient replicas are detected. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller#pod-template",
@@ -248,7 +248,7 @@ func (ReplicaSetSpec) SwaggerDoc() map[string]string {
 
 var map_ReplicaSetStatus = map[string]string{
 	"":                     "ReplicaSetStatus represents the current status of a ReplicaSet.",
-	"replicas":             "Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller",
+	"replicas":             "Replicas is the most recently oberved number of replicas. More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/",
 	"fullyLabeledReplicas": "The number of pods that have labels matching the labels of the pod template of the replicaset.",
 	"readyReplicas":        "readyReplicas is the number of pods targeted by this ReplicaSet controller with a Ready Condition.",
 	"availableReplicas":    "The number of available replicas (ready for at least minReadySeconds) for this replica set.",

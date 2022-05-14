@@ -894,7 +894,7 @@ type ReplicaSetSpec struct {
 	// Replicas is the number of desired replicas.
 	// This is a pointer to distinguish between explicit zero and unspecified.
 	// Defaults to 1.
-	// More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
+	// More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
 	// +optional
 	Replicas *int32 `json:"replicas,omitempty" protobuf:"varint,1,opt,name=replicas"`
 
@@ -921,7 +921,7 @@ type ReplicaSetSpec struct {
 // ReplicaSetStatus represents the current status of a ReplicaSet.
 type ReplicaSetStatus struct {
 	// Replicas is the most recently oberved number of replicas.
-	// More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/#what-is-a-replicationcontroller
+	// More info: https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
 	Replicas int32 `json:"replicas" protobuf:"varint,1,opt,name=replicas"`
 
 	// The number of pods that have labels matching the labels of the pod template of the replicaset.
