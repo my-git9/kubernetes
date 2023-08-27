@@ -18,6 +18,7 @@ package config
 
 import (
 	"fmt"
+	"net"
 	"reflect"
 	"testing"
 
@@ -25,7 +26,6 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/util/version"
 	apimachineryversion "k8s.io/apimachinery/pkg/version"
-
 	kubeadmapi "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm"
 	kubeadmapiv1old "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta3"
 	kubeadmapiv1 "k8s.io/kubernetes/cmd/kubeadm/app/apis/kubeadm/v1beta4"
@@ -757,6 +757,32 @@ func TestNormalizeKubernetesVersion(t *testing.T) {
 			}
 			if !tc.expectErr && err != nil {
 				t.Errorf("unexpected failure: %v", err)
+			}
+		})
+	}
+}
+
+func TestChooseAPIServerBindAddress(t *testing.T) {
+	type args struct {
+		bindAddress net.IP
+	}
+	tests := []struct {
+		name    string
+		args    args
+		want    net.IP
+		wantErr bool
+	}{
+		// TODO: Add test cases.
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got, err := ChooseAPIServerBindAddress(tt.args.bindAddress)
+			if (err != nil) != tt.wantErr {
+				t.Errorf("ChooseAPIServerBindAddress() error = %v, wantErr %v", err, tt.wantErr)
+				return
+			}
+			if !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ChooseAPIServerBindAddress() = %v, want %v", got, tt.want)
 			}
 		})
 	}
