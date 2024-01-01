@@ -269,7 +269,15 @@ func TestRunRenewCommands(t *testing.T) {
 			if len(test.Args) > 0 {
 				args = test.Args + " " + args
 			}
-			err := cmdtestutil.RunSubCommand(t, renewCmds, test.command, args)
+			nullFile, err := os.Open(os.DevNull)
+			if err != nil {
+				t.Errorf("Error opening null device: %v", err)
+			}
+			defer nullFile.Close()
+			oldStderr := os.Stderr
+			os.Stderr = nullFile
+			err = cmdtestutil.RunSubCommand(t, renewCmds, test.command, args)
+			os.Stderr = oldStderr
 			// certs renew doesn't support positional Args
 			if (err != nil) != test.expectedError {
 				t.Errorf("failed to run renew commands, expected error: %t, actual error: %v", test.expectedError, err)
