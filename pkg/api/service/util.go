@@ -24,10 +24,6 @@ import (
 	utilnet "k8s.io/utils/net"
 )
 
-const (
-	defaultLoadBalancerSourceRanges = "0.0.0.0/0"
-)
-
 // IsAllowAll checks whether the utilnet.IPNet allows traffic from 0.0.0.0/0
 func IsAllowAll(ipnets utilnet.IPNetSet) bool {
 	for _, s := range ipnets.StringSlice() {
@@ -56,7 +52,7 @@ func GetLoadBalancerSourceRanges(service *api.Service) (utilnet.IPNetSet, error)
 		val := service.Annotations[api.AnnotationLoadBalancerSourceRangesKey]
 		val = strings.TrimSpace(val)
 		if val == "" {
-			val = defaultLoadBalancerSourceRanges
+			val = "0.0.0.0/0"
 		}
 		specs := strings.Split(val, ",")
 		ipnets, err = utilnet.ParseIPNets(specs...)
